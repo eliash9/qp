@@ -5,8 +5,16 @@
 
     <section class="py-20 overflow-hidden">
         <div class="container mx-auto flex justify-center">
-            <div class="py-0 w-full px-5 space-y-5">                   
+            <div class="py-0 w-full px-5 space-y-5">     
+            <div class="flex justify-center items-center">
+                    <div class="w-auto bg-color-F4F2DE py-1.5 px-2 rounded-lg shadow">
+                        <h2 class="md:text-2xl text-lg font-sans font-semibold text-center text-black">
+                        {{$room}} Ranking
+                        </h2>
+                    </div>
+                </div>                   
                 <!-- New Table -->
+               
                 <div class="w-full overflow-hidden rounded-lg shadow-xs">
                     <div class="w-full overflow-x-auto bg-color-F4F2DE px-2 py-2">
                         <table class="w-full whitespace-no-wrap">

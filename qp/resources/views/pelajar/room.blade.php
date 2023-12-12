@@ -9,8 +9,14 @@
                 <div class="flex flex-col justify-center items-center space-y-10">
                     <h2 class="text-center text-xl font-sans font-bold tracking-widest text-black uppercase">
                         {{ $detail->room }}
+                       
                     </h2>
-                    <a href="{{ url('/pelajar/room/'.$detail->id.'/room_post') }}" class="px-7 py-2 text-2xl text-white group relative flex w-auto justify-center rounded-lg hover:opacity-50 bg-green-400">
+                    @if (session('success'))
+                @endif
+                @if (session('error'))
+                @endif
+                    
+                    <a href="{{ url('/pelajar/room/'.$detail->code.'/room_post') }}" class="px-7 py-2 text-2xl text-white group relative flex w-auto justify-center rounded-lg hover:opacity-50 bg-green-400">
                         Play
                     </a>
                 </div>

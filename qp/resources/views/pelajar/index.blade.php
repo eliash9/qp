@@ -7,13 +7,22 @@
         <div class="container mx-auto flex justify-center">
             <div class="pb-1 px-10 max-w-xl">
                 @if (session('success'))
+                <div class="alert alert-success ">
+                        {{ session('success') }}
+                    </div>
                 @endif
-                @if (session('error'))
+              
+                @if(session('error'))
+                    <div class="alert alert-danger bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                        {{ session('error') }}
+                    </div>
                 @endif
+   
+ 
                 <form class="space-y-6" action="{{ url('/pelajar') }}" method="POST" onsubmit="return confirmSubmit()" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="remember" value="true">
-                    <div class="-space-y-2 rounded-md shadow-sm flex flex-col items-center">
+                    <div class="-space-y-2 py-5 bg-white rounded-md shadow-sm flex flex-col items-center">
                         <div>
                             <h2 class="pb-5 text-center text-3xl font-roboto font-bold tracking-tight text-black">
                                 Play Game Quiz <br> & <br> Enjoy

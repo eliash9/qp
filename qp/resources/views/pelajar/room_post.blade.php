@@ -6,23 +6,26 @@
 
     <section class="py-10 overflow-hidden">
         <div class="container mx-auto flex justify-center">
-            <div class="py-2 w-full px-5 space-y-5 rounded-xl">
-                <div class="flex justify-center items-center">
-                  
-                        <h1 class="md:text-2xl text-lg font-sans font-semibold text-center text-black">
+            <div class="py-2 w-full px-2  rounded-xl">
+                
+                <div class="flex w-full items-center space-x-3">
+                         <h1 class="flex w-full w-auto justify-center text-lg font-sans font-semibold text-center text-black">
                             {{ $name->room }}
                         </h1>
-                   
+                        <h3 class="group relative flex w-full w-auto justify-center   px-3 py-2 text-lg font-sans font-semibold  " id="timer"></h3>
+                        <button class="group relative flex w-full w-auto justify-center " id="toggleButton"><i class="fi fi-rr-expand"></i> </button>
+                      
                 </div>
-                <button  id="toggleButton"><i class="fi fi-rr-expand"></i>  Toggle Full-Screen</button>
-               
+              
                     <form class="font-roboto" method="POST" action="{{ url('/pelajar/room/'.$link->id.'/room_post') }}"
                         onsubmit="return confirmSubmit()" enctype="multipart/form-data">
-                    <div id="fullScreenDiv" class="py-2 w-full px-5 space-y-5 bg-color-F4F2DE rounded-xl flex justify-center items-center">
+                    <div id="fullScreenDiv" class="py-1 w-full px-1 space-y-2 bg-color-F4F2DE  flex justify-center items-center">
 
                         @csrf
+                        
                         <input type="hidden" name="current_question" id="current_question" value="0">
-                        <div class="overflow-hidden flex flex-col rounded-xl  space-y-4" id="questionContainer">
+                        <div class="py-2 w-full px-2 space-y-2 rounded-xl  space-y-4" id="questionContainer">
+                        
                             @foreach ($quizzes as $key => $row)
                             <div class="question" id="question_{{ $key }}" style="{{ $key > 0 ? 'display:none' : '' }}">
                            
@@ -40,7 +43,7 @@
                                                
                                            
                                                 
-                                    <div class="px-5 pb-5 space-y-4">
+                                    <div class="px-2 pb-2 space-y-4">
                                         
                                     
 
@@ -125,13 +128,13 @@
                             </div>
                             @endforeach
 
-                            <div class="flex justify-center items-center py-4">
+                            <div class="flex justify-center items-center py-2">
                                 <div class="flex w-full items-center space-x-2">
-                                    <button type="button" onclick="previousQuestion()"
+                                    <!--button type="button" onclick="previousQuestion()"
                                         class="group relative flex w-full w-auto justify-center rounded-md bg-green-400 px-3 py-2 text-base font-normal text-white hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 shadow shadow-green-600 hover:shadow-white"
                                         id="prevButton">
                                         Sebelumnya
-                                    </button>
+                                    </button-->
                                     <button type="button" onclick="nextQuestion()"
                                         class="group relative flex w-full w-auto justify-center rounded-md bg-green-400 px-3 py-2 text-base font-normal text-white hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 shadow shadow-green-600 hover:shadow-white"
                                         id="nextButton">
@@ -182,6 +185,7 @@
     </script>
 
     <script>
+        /*
     let currentQuestion = 0;
     const totalQuestions = {{ count($quizzes) }};
 
@@ -224,5 +228,86 @@
 
     showQuestion(currentQuestion);
     toggleButtons();
+
+    */
+    let currentQuestion = 0;
+const totalQuestions = {{ count($quizzes) }};
+let timer;
+
+function showQuestion(questionIndex) {
+    // Clear the previous timer when switching to a new question
+    clearTimeout(timer);
+
+    const questions = document.querySelectorAll('.question');
+    questions.forEach((question, index) => {
+        if (index === questionIndex) {
+            question.style.display = 'block';
+        } else {
+            question.style.display = 'none';
+        }
+    });
+
+    // Set a new timer for 15 seconds when showing a new question
+    startTimer();
+}
+
+function startTimer() {
+    let secondsRemaining = 15;
+    const timerElement = document.getElementById('timer');
+
+    function updateTimer() {
+        timerElement.textContent = `Time left: ${secondsRemaining} seconds`;
+
+        if (secondsRemaining === 0) {
+            // Move to the next question when the time is up
+            nextQuestion();
+        } else {
+            secondsRemaining--;
+            // Call the updateTimer function recursively every second
+            timer = setTimeout(updateTimer, 1000);
+        }
+    }
+
+    // Initial call to start the timer
+    updateTimer();
+}
+
+function nextQuestion() {
+    if (currentQuestion < totalQuestions - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+    }
+    toggleButtons();
+}
+
+function previousQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+    }
+    toggleButtons();
+}
+/*
+function toggleButtons() {
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const submitButton = document.getElementById('submitButton');
+
+    prevButton.style.display = currentQuestion === 0 ? 'none' : 'block';
+    nextButton.style.display = currentQuestion === totalQuestions - 1 ? 'none' : 'block';
+    submitButton.style.display = currentQuestion === totalQuestions - 1 ? 'block' : 'none';
+}
+*/
+function toggleButtons() {
+    const nextButton = document.getElementById('nextButton');
+    const submitButton = document.getElementById('submitButton');
+
+    nextButton.style.display = currentQuestion === totalQuestions - 1 ? 'none' : 'block';
+    submitButton.style.display = currentQuestion === totalQuestions - 1 ? 'block' : 'none';
+}
+
+showQuestion(currentQuestion);
+toggleButtons();
+
 </script>
 @endsection

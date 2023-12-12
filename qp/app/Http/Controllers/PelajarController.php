@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\Room;
 use App\Models\Quiz;
 use App\Models\Answer;
+use App\Models\User;
 
 class PelajarController extends Controller
 {
@@ -18,26 +19,41 @@ class PelajarController extends Controller
     public function enter_room(Request $request)
     {
         $enter = Room::where([['code', $request->code], ['is_active', 1]])->first();
+       // dd($enter);
         if ($enter) {
-            return redirect()->route('pelajar.room', $enter)->withSuccess('Berhasil masuk');
+            return redirect()->route('pelajar.room', $enter->code)->withSuccess('Berhasil masuk');
         }
         return redirect()->back()->withError('Room tidak ditemukan');
     }
 
     public function room($id)
     {
+       // dd($id);
 
 
-        $detail = Room::where('id', $id)->firstOrFail();
-        $room = Room::findOrFail($id);
+        $detail = Room::where('code', $id)->firstOrFail();
+        $room = Room::findOrFail($detail->id);
         $quizzes = Quiz::where([['id_room', $room->id]])->get();
+
+        $existingAnswer = Answer::where([
+          
+            'id_room' => $room->id,
+            'id_user' => auth()->user()->id,
+        ])->first();
+       if($existingAnswer){
+        
+        return redirect()->back()->withError('Anda Sudah menyelesaikannya!');
+       }else {
         return view('pelajar.room', ['detail' => $detail, 'quizzes' => $quizzes]);
+       }
+
+        
     }
 
     public function play($id)
     {
-        $link = Room::where('id', $id)->firstOrFail();
-        $name = Room::findOrFail($id);
+        $link = Room::where('code', $id)->firstOrFail();
+        $name = Room::findOrFail($link->id);
         $quizzes = Quiz::where([['id_room', $name->id]])->get();
         // dd($room);
         return view('pelajar.room_post', ['quizzes' => $quizzes, 'name' => $name, 'link' => $link]);
@@ -113,7 +129,7 @@ class PelajarController extends Controller
             ]);
         // dd($stand);
 
-        return view('pelajar.standing', ['link' => $link, 'stand' => $stand]);
+        return view('pelajar.standing', ['link' => $link, 'stand' => $stand,'room'=>$room->room]);
     }
 
     public function rangk()

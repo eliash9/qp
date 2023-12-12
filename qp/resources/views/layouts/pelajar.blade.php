@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
     <link rel="icon" href="{{ asset ('img/logo.png') }}">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <title>Dashboard Guru | Play Quiz</title>
+    <title>Pelajar | Play Quiz</title>
     <style>
     /* Style when the radio input is checked */
     input[type="radio"]:checked + label {
