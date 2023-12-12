@@ -50,15 +50,17 @@ class SocialiteController extends Controller
             'password' => bcrypt($username), // Isi acak untuk password
             'role' => 'pelajar',
         ]);
+
+        auth()->login($user);
+        return redirect('/pelajar');
+
+    }else {
+        auth()->login($user);
+        return redirect($user->role);
+
     }
 
-    // Login pengguna
-    auth()->login($user);
-
-    // Lakukan sesuatu dengan informasi pengguna, misalnya simpan ke database
-
-    // Redirect ke halaman setelah login, misalnya '/pelajar'
-    return redirect('/pelajar');
+   
 }
 
 }
