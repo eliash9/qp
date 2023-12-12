@@ -13,7 +13,15 @@ class PelajarController extends Controller
 {
     public function index()
     {
-        return view('pelajar.index');
+        $stand = Answer::groupBy('answers.username')
+        ->orderBy('total', 'desc')
+        //->groupBy('answers.username')
+        ->limit(5)
+        ->get([
+            'username',
+            Answer::raw('sum(score) as total')
+        ]);
+        return view('pelajar.index', [ 'stand' => $stand]);
     }
 
     public function enter_room(Request $request)

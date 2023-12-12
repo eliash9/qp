@@ -59,7 +59,7 @@ module.exports = {
         '480p': '480px',
         '614p': '614px',
         '1080p': '1080px',
-        '360p': '360px'       
+        '360p': '360px'
       },
       fontFamily: {
         signika: "'Signika', sans-serif",
@@ -82,6 +82,15 @@ module.exports = {
         'purple-1F4B9D': '#9d3cbf',
         'color-F4F2DE': '#f4f2de',
         'color-ECA869': '#eca869',
+        'blue': '#1fb6ff',
+        'purple': '#7e5bef',
+        'pink': '#ff49db',
+        'orange': '#ff7849',
+        'green': '#13ce66',
+        'yellow': '#ffc82c',
+        'gray-dark': '#273444',
+        'gray': '#8492a6',
+        'gray-light': '#d3dce6',
       }
     },
   },

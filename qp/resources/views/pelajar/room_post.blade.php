@@ -56,8 +56,8 @@
                                                         class="hidden"
                                                     >
                                                     <label for="answer1{{ $key + 1 }}"
-                                                        class="w-full bg-red-500 text-white py-4 px-4  shadow hover:bg-white hover:text-black focus-visible:outline shadow-green-600 hover:shadow-black cursor-pointer">
-                                                        {{ $row->a }}
+                                                        class="w-full bg-red-500 text-xl font-semibold text-white py-4 px-4  shadow hover:bg-white hover:text-black focus-visible:outline shadow-green-600 hover:shadow-black cursor-pointer">
+                                                        <i class="fi fi-rr-expand"></i>  {{ $row->a }}
                                                     </label>
                                                 </div>
 
@@ -69,7 +69,7 @@
                                                         class="hidden"
                                                     >
                                                     <label for="answer2{{ $key + 1 }}"
-                                                        class="w-full bg-red-500 text-white py-4 px-4  shadow hover:bg-white hover:text-black focus-visible:outline shadow-green-600 hover:shadow-black cursor-pointer">
+                                                        class="w-full bg-red-500 text-xl font-semibold text-white py-4 px-4  shadow hover:bg-white hover:text-black focus-visible:outline shadow-green-600 hover:shadow-black cursor-pointer">
                                                         {{ $row->b }}
                                                     </label>
                                                 </div>
@@ -89,7 +89,7 @@
                                                         class="hidden"
                                                     >
                                                     <label for="answer3{{ $key + 1 }}"
-                                                        class="w-full bg-red-500 text-white py-4 px-4  shadow hover:bg-white hover:text-black focus-visible:outline shadow-green-600 hover:shadow-black cursor-pointer">
+                                                        class="w-full bg-red-500 text-xl font-semibold text-white py-4 px-4  shadow hover:bg-white hover:text-black focus-visible:outline shadow-green-600 hover:shadow-black cursor-pointer">
                                                         {{ $row->c }}
                                                     </label>
                                                 </div>
@@ -100,7 +100,7 @@
                                                         class="hidden"
                                                     >
                                                     <label for="answer4{{ $key + 1 }}"
-                                                        class="w-full bg-red-500 text-white py-4 px-4  shadow hover:bg-white hover:text-black focus-visible:outline shadow-green-600 hover:shadow-black cursor-pointer">
+                                                        class="w-full bg-red-500 text-xl font-semibold text-white py-4 px-4  shadow hover:bg-white hover:text-black focus-visible:outline shadow-green-600 hover:shadow-black cursor-pointer">
                                                         {{ $row->d }}
                                                     </label>
                                                 </div>
