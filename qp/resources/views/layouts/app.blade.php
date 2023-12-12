@@ -32,7 +32,7 @@
             <ul class="pt-4 md:flex md:justify-between md:pt-0 text-base text-black font-semibold">
              @php 
              $menuItems = [
-            ['label' => 'Home', 'url' => '/'],
+           
             ['label' => 'Room', 'url' => '/guru'],
             ['label' => 'Rangking', 'url' => '/guru/rangking'],
             ['label' => 'User', 'url' => '/guru/user'],

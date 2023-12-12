@@ -42,7 +42,7 @@
             <ul class="pt-4 md:flex md:justify-between md:pt-0 text-base text-black font-semibold">
              @php 
              $menuItems = [
-            ['label' => 'Home', 'url' => '/'],
+           
             ['label' => 'Room', 'url' => '/pelajar'],
             ['label' => 'Rangking', 'url' => '/pelajar/rangking'],
             // Add more menu items dynamically here

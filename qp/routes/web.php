@@ -24,7 +24,7 @@ Route::post('/', [AuthController::class, 'login']);
 
 Route::get('login/google', [SocialiteController::class, 'redirectToGoogle']);
 Route::get('login/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
-
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 
 
 Route::group(['middleware' => ['auth']], function () {
