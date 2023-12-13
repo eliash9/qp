@@ -1,7 +1,15 @@
 @extends('layouts.pelajar')
 
 @section('content')
-  
+<style>
+        #audioPlayer {
+            display: none;
+        }
+    </style>
+<audio id="audioPlayer" autoplay loop>
+        <source src="{{ asset('audio/quiz.mp3') }}" type="audio/mp3">
+</audio>
+    
 
 
     <section class="py-10 overflow-hidden">
@@ -14,7 +22,7 @@
                         </h1>
                         <h3 class="group relative flex w-full w-auto justify-center   px-3 py-2 text-lg font-sans font-semibold  " id="timer"></h3>
                         <button class="group relative flex w-full w-auto justify-center " id="toggleButton"><i class="fi fi-rr-expand"></i> </button>
-                      
+                        <button class="group relative flex w-full w-auto justify-center " onclick="toggleAudio()"><i class="fi fi-rr-volume"></i></button>
                 </div>
               
                     <form class="font-roboto" method="POST" action="{{ url('/pelajar/room/'.$link->id.'/room_post') }}"
@@ -158,6 +166,35 @@
     </section>
 
     <script>
+
+        const audioPlayer = document.getElementById('audioPlayer');
+       
+
+        function toggleAudio() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        }
+
+        audioPlayer.addEventListener('canplaythrough', function () {
+            if (!audioPlayer.paused) {
+                audioPlayer.play();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+          
+            if (!audioPlayer.paused) {
+                audioPlayer.play();
+            }
+        });
+
+
+
+
         const toggleButton = document.getElementById('toggleButton');
             const fullScreenDiv = document.getElementById('fullScreenDiv');
 
@@ -185,51 +222,7 @@
     </script>
 
     <script>
-        /*
-    let currentQuestion = 0;
-    const totalQuestions = {{ count($quizzes) }};
-
-    function showQuestion(questionIndex) {
-        const questions = document.querySelectorAll('.question');
-        questions.forEach((question, index) => {
-            if (index === questionIndex) {
-                question.style.display = 'block';
-            } else {
-                question.style.display = 'none';
-            }
-        });
-    }
-
-    function nextQuestion() {
-        if (currentQuestion < totalQuestions - 1) {
-            currentQuestion++;
-            showQuestion(currentQuestion);
-        }
-        toggleButtons();
-    }
-
-    function previousQuestion() {
-        if (currentQuestion > 0) {
-            currentQuestion--;
-            showQuestion(currentQuestion);
-        }
-        toggleButtons();
-    }
-
-    function toggleButtons() {
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        const submitButton = document.getElementById('submitButton');
-
-        prevButton.style.display = currentQuestion === 0 ? 'none' : 'block';
-        nextButton.style.display = currentQuestion === totalQuestions - 1 ? 'none' : 'block';
-        submitButton.style.display = currentQuestion === totalQuestions - 1 ? 'block' : 'none';
-    }
-
-    showQuestion(currentQuestion);
-    toggleButtons();
-
-    */
+        
     let currentQuestion = 0;
 const totalQuestions = {{ count($quizzes) }};
 let timer;
