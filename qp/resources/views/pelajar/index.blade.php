@@ -3,96 +3,50 @@
 @section('content')
 
 
-<section class="py-5">
+<section class="py-10 overflow-hidden h-screen">
     <div class="container mx-auto flex justify-center">
-        <div class="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-2">
-
-
-            <div class="pb-1 px-10 max-w-xl">
-                @if (session('success'))
-                <div class="alert alert-success ">
-                    {{ session('success') }}
-                </div>
-                @endif
-
-                @if(session('error'))
-                <div class="alert alert-danger bg-red-500 text-white font-bold rounded-t px-4 py-2">
-                    {{ session('error') }}
-                </div>
-                @endif
-
-
-                <form class="space-y-6" action="{{ url('/pelajar') }}" method="POST" onsubmit="return confirmSubmit()"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="remember" value="true">
-                    <div class="-space-y-2 py-5 bg-white rounded-md shadow-sm flex flex-col items-center">
-                        <div>
-                            <h2 class="pb-5 text-center text-3xl font-roboto font-bold tracking-tight text-black">
-                                Play Game Quiz <br> & <br> Enjoy
-                            </h2>
-                        </div>
-                        <div>
-                            <img src={{asset('img/illus3.png')}} alt="ilustrasi" class="h-auto w-72">
-                        </div>
-                        <div>
-                            <label for="code" class="sr-only">Enter Room Code</label>
-                            <input value="{{ old('code') }}" id="code" name="code" type="password" required
-                                class="relative block w-full rounded-md border-0 py-1.5 text-black-1E1E1E placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-gray-300"
-                                placeholder="Enter Room Code">
-                        </div>
-                    </div>
-                    <div>
-                        <button type="submit"
-                            class="group relative flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white hover:text-black hover:bg-gray-300 duration-200 shadow shadow-orange-400 hover:shadow-gray-300">
-                            Get Room
-                        </button>
-                    </div>
-                </form>
-
+        <div class="pb-1 px-10 max-w-xl">
+            @if (session('success'))
+            <div class="alert alert-success ">
+                {{ session('success') }}
             </div>
-            <div class="pb-1 px-10 max-w-xl">
+            @endif
+
+            @if(session('error'))
+            <div class="alert alert-danger bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                {{ session('error') }}
+            </div>
+            @endif
+
+
+            <form class="space-y-6" action="{{ url('/pelajar') }}" method="POST" onsubmit="return confirmSubmit()"
+                enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="remember" value="true">
                 <div class="-space-y-2 py-5 bg-white rounded-md shadow-sm flex flex-col items-center">
                     <div>
                         <h2 class="pb-5 text-center text-3xl font-roboto font-bold tracking-tight text-black">
-                            Rangking Board
+                            Play Game Quiz <br> & <br> Enjoy
                         </h2>
                     </div>
                     <div>
-                    <table class="w-full whitespace-no-wrap">
-                            <thead>
-                                <tr class="text-xs font-semibold tracking-wide text-left text-black border-gray-400 uppercase border-b">
-                                    <th class="px-4 py-3">No</th>
-                                    <th class="px-4 py-3">Name</th>
-                                    <th class="px-4 py-3">Score</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white-fafafa divide-gray-400 divide-y">
-
-                                @php $no=0; @endphp
-                                @foreach ($stand as $row)
-                                @php $no++; @endphp
-
-                                <tr class="text-black">
-                                    <td class="px-4 py-3 text-sm">
-                                        {{ $no }}
-                                    </td>
-                                    <td class="px-4 py-3 text-sm">
-                                        {{ $row->username }}
-                                    </td> 
-                                    <td class="px-4 py-3 text-sm">
-                                        {{ $row->total }}
-                                    </td>
-                                </tr>
-                                
-                                @endforeach
-
-                            </tbody>
-                        </table>
-</div>
-                    
+                        <img src={{asset('img/illus3.png')}} alt="ilustrasi" class="h-auto w-72">
+                    </div>
+                    <div>
+                        <label for="code" class="sr-only">Enter Room Code</label>
+                        <input value="{{ old('code') }}" id="code" name="code" type="password" required
+                            class="relative block w-full rounded-md border-0 py-1.5 text-black-1E1E1E placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-gray-300"
+                            placeholder="Enter Room Code">
+                    </div>
                 </div>
-            </div>
+                <div>
+                    <button type="submit"
+                        class="group relative flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white hover:text-black hover:bg-gray-300 duration-200 shadow shadow-orange-400 hover:shadow-gray-300">
+                        Get Room
+                    </button>
+                </div>
+            </form>
+            
         </div>
     </div>
 </section>

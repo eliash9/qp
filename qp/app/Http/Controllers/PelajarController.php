@@ -14,20 +14,20 @@ class PelajarController extends Controller
     public function index()
     {
         $stand = Answer::groupBy('answers.username')
-        ->orderBy('total', 'desc')
-        //->groupBy('answers.username')
-        ->limit(5)
-        ->get([
-            'username',
-            Answer::raw('sum(score) as total')
-        ]);
-        return view('pelajar.index', [ 'stand' => $stand]);
+            ->orderBy('total', 'desc')
+            //->groupBy('answers.username')
+            ->limit(5)
+            ->get([
+                'username',
+                Answer::raw('sum(score) as total')
+            ]);
+        return view('pelajar.index', ['stand' => $stand]);
     }
 
     public function enter_room(Request $request)
     {
         $enter = Room::where([['code', $request->code], ['is_active', 1]])->first();
-       // dd($enter);
+        // dd($enter);
         if ($enter) {
             return redirect()->route('pelajar.room', $enter->code)->withSuccess('Berhasil masuk');
         }
@@ -36,7 +36,7 @@ class PelajarController extends Controller
 
     public function room($id)
     {
-       // dd($id);
+        // dd($id);
 
 
         $detail = Room::where('code', $id)->firstOrFail();
@@ -44,18 +44,18 @@ class PelajarController extends Controller
         $quizzes = Quiz::where([['id_room', $room->id]])->get();
 
         $existingAnswer = Answer::where([
-          
+
             'id_room' => $room->id,
             'id_user' => auth()->user()->id,
         ])->first();
-       if($existingAnswer){
-        
-        return redirect()->back()->withError('Anda Sudah menyelesaikannya!');
-       }else {
-        return view('pelajar.room', ['detail' => $detail, 'quizzes' => $quizzes]);
-       }
+        if ($existingAnswer) {
 
-        
+            return redirect()->back()->withError('Anda Sudah menyelesaikannya!');
+        } else {
+            return view('pelajar.room', ['detail' => $detail, 'quizzes' => $quizzes]);
+        }
+
+
     }
 
     public function play($id)
@@ -137,13 +137,47 @@ class PelajarController extends Controller
             ]);
         // dd($stand);
 
-        return view('pelajar.standing', ['link' => $link, 'stand' => $stand,'room'=>$room->room]);
+         // Query for the first position
+         $firstPlace = Answer::where([['id_room', $room->id]])
+         ->groupBy('answers.username')
+         ->orderBy('total', 'desc')
+         ->take(1)
+         ->get([
+             'username',
+             Answer::raw('sum(score) as total')
+         ])->first();
+
+     // Query for the second position
+     $secondPlace = Answer::where([['id_room', $room->id]])
+     ->groupBy('answers.username')
+         ->orderBy('total', 'desc')
+         ->skip(1)
+         ->take(1)
+         ->get([
+             'username',
+             Answer::raw('sum(score) as total')
+         ])->first();
+
+     // Query for the third position
+     $thirdPlace = Answer::where([['id_room', $room->id]])
+     ->groupBy('answers.username')
+         ->orderBy('total', 'desc')
+         ->skip(2)
+         ->take(1)
+         ->get([
+             'username',
+             Answer::raw('sum(score) as total')
+         ])->first();
+
+        return view('pelajar.standing', ['link' => $link, 'stand' => $stand, 'room' => $room->room,'firstPlace' =>$firstPlace,
+        'secondPlace'=>$secondPlace,
+        'thirdPlace'=> $thirdPlace]);
     }
 
     public function rangk()
     {
-      //  $link = Room::where('id', $id)->firstOrFail();
-      //  $room = Room::findOrFail($id);
+        //  $link = Room::where('id', $id)->firstOrFail();
+        //  $room = Room::findOrFail($id);
         $stand = Answer::groupBy('answers.username')
             ->orderBy('total', 'desc')
             //->groupBy('answers.username')
@@ -153,6 +187,46 @@ class PelajarController extends Controller
             ]);
         // dd($stand);
 
-        return view('pelajar.rangking', [ 'stand' => $stand]);
+        // Query for the first position
+        $firstPlace = Answer::groupBy('answers.username')
+            ->orderBy('total', 'desc')
+            ->take(1)
+            ->get([
+                'username',
+                Answer::raw('sum(score) as total')
+            ])->first();
+
+        // Query for the second position
+        $secondPlace = Answer::groupBy('answers.username')
+            ->orderBy('total', 'desc')
+            ->skip(1)
+            ->take(1)
+            ->get([
+                'username',
+                Answer::raw('sum(score) as total')
+            ])->first();
+
+        // Query for the third position
+        $thirdPlace = Answer::groupBy('answers.username')
+            ->orderBy('total', 'desc')
+            ->skip(2)
+            ->take(1)
+            ->get([
+                'username',
+                Answer::raw('sum(score) as total')
+            ])->first();
+
+        // Now $firstPlace, $secondPlace, and $thirdPlace contain the data for the first, second, and third positions, respectively.
+
+
+
+
+
+        return view('pelajar.rangking', [
+            'stand' => $stand,
+            'firstPlace' =>$firstPlace,
+            'secondPlace'=>$secondPlace,
+            'thirdPlace'=> $thirdPlace
+        ]);
     }
 }
