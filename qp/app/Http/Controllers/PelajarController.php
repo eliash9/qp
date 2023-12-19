@@ -169,7 +169,8 @@ class PelajarController extends Controller
              Answer::raw('sum(score) as total')
          ])->first();
 
-        return view('pelajar.standing', ['link' => $link, 'stand' => $stand, 'room' => $room->room,'firstPlace' =>$firstPlace,
+        return view('pelajar.standing', ['link' => $link, 'stand' => $stand, 'room' => $room->room,
+        'firstPlace' =>$firstPlace,
         'secondPlace'=>$secondPlace,
         'thirdPlace'=> $thirdPlace]);
     }

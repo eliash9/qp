@@ -11,7 +11,7 @@
 </head>
 
 <body class="bg-gradient-to-r bg-blue-2F308B">
-    
+
     <section class="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div class="w-full max-w-max">
 
@@ -21,41 +21,50 @@
                 <div>
                     <img src={{asset('img/illus.png')}} alt="ilustrasi" class="h-auto w-auto">
                 </div>
-                <div>                
-                    <h2 class="py-5 text-center text-3xl font-roboto font-bold tracking-tight text-gray-400">
+                <div>
+                    <h2 class="py-2 text-center text-3xl font-roboto font-bold tracking-tight text-gray-400">
                         Login to Play
-                    </h2>                    
-                    <form class="py-5 space-y-6" action="{{ url('/') }}" method="POST">
+                    </h2>
+                    <form class="py-5 space-y-2" action="{{ url('/') }}" method="POST">
                         @csrf
                         <input type="hidden" name="remember" value="true">
                         <div class="space-y-2 rounded-md shadow-sm">
                             <div>
                                 <label for="username" class="sr-only">Username</label>
-                                <input id="username" name="username" type="text" required class="relative block w-full rounded-md border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-gray-300" placeholder="Username">
+                                <input id="username" name="username" type="text" required
+                                    class="relative block w-full rounded-md border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-gray-300"
+                                    placeholder="Username">
                             </div>
                             <div>
                                 <label for="password" class="sr-only">Password</label>
-                                <input id="password" name="password" type="password" autocomplete="current-password" required class="relative block w-full rounded-md border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-gray-300" placeholder="Password">
+                                <input id="password" name="password" type="password" autocomplete="current-password"
+                                    required
+                                    class="relative block w-full rounded-md border-0 py-1.5 text-black placeholder:text-black placeholder:opacity-50 sm:text-sm sm:leading-6 px-3 bg-gray-300"
+                                    placeholder="Password">
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="group relative flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white hover:text-black hover:bg-gray-300 duration-200 shadow shadow-green-200 hover:shadow-gray-300">
+                            <button type="submit"
+                                class="group relative flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white hover:text-black hover:bg-gray-300 duration-200 shadow shadow-green-200 hover:shadow-gray-300 px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
                                 Sign in
                             </button>
                         </div>
                     </form>
-<div>
-    <a href="login/google" class="group relative flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white hover:text-black hover:bg-gray-300 duration-200 shadow shadow-green-200 hover:shadow-gray-300 px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-        <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
-        <span>Login with Google</span>
-</a>
-</div>
+                    <div>
+                        <a href="login/google"
+                            class="group relative flex w-full justify-center rounded-md bg-green-400 px-3 py-2 text-sm font-semibold text-white hover:text-black hover:bg-gray-300 duration-200 shadow shadow-green-200 hover:shadow-gray-300 px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
+                            <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg"
+                                loading="lazy" alt="google logo">
+                            <span>Login with Google</span>
+                        </a>
+                    </div>
                     <div>
                         <p class="text-center text-base tracking-tight text-black">
-                            Belum memiliki akun ? 
-                            <a href="{{ url('/register') }}" class="text-base text-orange-400 hover:opacity-50 duration-200">
+                            Belum memiliki akun ?
+                            <a href="{{ url('/register') }}"
+                                class="text-base text-orange-400 hover:opacity-50 duration-200">
                                 daftar sekarang
-                            </a>          
+                            </a>
                         </p>
                     </div>
                 </div>

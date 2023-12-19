@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\PelajarController;
 use App\Http\Controllers\RedirectController;
@@ -29,13 +30,24 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 
 Route::group(['middleware' => ['auth']], function () {
 
+    Route::group(['middleware' => ['checklogin:admin']], function () {
+        Route::get('/admin', [AdminController::class, 'index']);
+        Route::put('/admin/change-role/{user}', [AdminController::class, 'changeRole'])->name('change.role');
+
+        Route::get('/admin/user', [AdminController::class, 'users']);
+        Route::get('/admin/user_delete/{id}', [AdminController::class, 'user_delete']);
+
+       // Route::get('/admin/room', [AdminController::class, 'room']);
+
+    });
+
     Route::group(['middleware' => ['checklogin:guru']], function () {
 
         
-        Route::put('/guru/change-role/{user}', [GuruController::class, 'changeRole'])->name('change.role');
+      //  Route::put('/guru/change-role/{user}', [GuruController::class, 'changeRole'])->name('change.role');
 
-        Route::get('/guru/user', [GuruController::class, 'users']);
-        Route::get('/guru/user_delete/{id}', [GuruController::class, 'user_delete']);
+      //  Route::get('/guru/user', [GuruController::class, 'users']);
+      //  Route::get('/guru/user_delete/{id}', [GuruController::class, 'user_delete']);
 
         Route::get('/guru/rangking', [GuruController::class, 'rangk'])->name('guru.rangking');
 

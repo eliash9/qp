@@ -35,7 +35,7 @@
            
             ['label' => 'Room', 'url' => '/guru'],
             ['label' => 'Rangking', 'url' => '/guru/rangking'],
-            ['label' => 'User', 'url' => '/guru/user'],
+           // ['label' => 'User', 'url' => '/guru/user'],
             // Add more menu items dynamically here
         ];
 @endphp  

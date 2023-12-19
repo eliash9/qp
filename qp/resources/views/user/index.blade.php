@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
   
@@ -66,6 +66,7 @@
                     <select name="role" onchange="this.form.submit()">
                         <option value="siswa" {{ ($row->role === 'siswa') ? 'selected' : '' }}>Siswa</option>
                         <option value="guru" {{ ($row->role === 'guru') ? 'selected' : '' }}>Guru</option>
+                        <option value="admin" {{ ($row->role === 'admin') ? 'selected' : '' }}>Admin</option>
                         <!-- Add more role options here -->
                     </select>
                 </form>

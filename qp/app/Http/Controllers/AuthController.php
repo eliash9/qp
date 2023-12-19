@@ -12,6 +12,11 @@ class AuthController extends Controller
         if (Auth::check()) {
             // User is already logged in, redirect them to a specific route
             $user = Auth::user();
+            if ($user->role == 'admin') {
+                return redirect()->intended('admin');
+               // return redirect()->route('guru.index'); // Replace 'guru.index' with your guru dashboard route
+            }else 
+
             if ($user->role == 'guru') {
                 return redirect()->intended('guru');
                // return redirect()->route('guru.index'); // Replace 'guru.index' with your guru dashboard route

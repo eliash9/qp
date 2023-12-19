@@ -2,15 +2,13 @@
 
 @section('content')
 <style>
-   
-
     .pod {
         display: flex;
         align-items: flex-end;
     }
 
     .podium__item {
-        width: 200px;
+        min-width: 100px;
     }
 
     .podium__rank {
@@ -20,9 +18,10 @@
         font-size: 35px;
         color: #fff;
     }
+
     .podium__total {
         display: flex;
-        margin:0px;
+        margin: 0px;
         justify-content: center;
         align-items: center;
         font-size: 20px;
@@ -40,18 +39,18 @@
     }
 
     .podium .first {
-        min-height: 150px;
+        min-height: 100px;
         background: rgb(255, 172, 37);
-       
+
     }
 
     .podium .second {
-        min-height: 100px;
+        min-height: 50px;
         background: blue;
     }
 
     .podium .third {
-        min-height: 50px;
+        min-height: 25px;
         background: green;
     }
 </style>
@@ -59,49 +58,48 @@
 <section class="py-20 overflow-hidden">
 
 
-    <div class="container mx-auto flex justify-center">
-        <div class="pod podium">
-            <div class="podium__item">
-                <p class="podium__city">{{$secondPlace->username}}</p>
-                <div class="podium__rank second">2</div>
-                <div class="podium__total second">
-                  {{$secondPlace->total}}
+    <div class="py-0 w-full px-5 space-y-5 ">
+        <div class="flex justify-center items-center">
+            <div class="pod podium">
+                <div class="podium__item">
+                    <p class="podium__city">{{$secondPlace->username ?? '2'}}</p>
+                    <div class="podium__rank second">2</div>
+                    <div class="podium__total second">
+                        {{$secondPlace->total?? '0'}}
+                    </div>
                 </div>
-            </div>
-            <div class="podium__item">
-                <p class="podium__city">{{$firstPlace->username}}</p>
-                <div class="podium__rank first">
-                    <svg class="podium__number" viewBox="0 0 27.476 75.03" xmlns="http://www.w3.org/2000/svg">
-                        <g transform="matrix(1, 0, 0, 1, 214.957736, -43.117417)">
-                            <path class="st8"
-                                d="M -198.928 43.419 C -200.528 47.919 -203.528 51.819 -207.828 55.219 C -210.528 57.319 -213.028 58.819 -215.428 60.019 L -215.428 72.819 C -210.328 70.619 -205.628 67.819 -201.628 64.119 L -201.628 117.219 L -187.528 117.219 L -187.528 43.419 L -198.928 43.419 L -198.928 43.419 Z"
-                                style="fill: #000;" />
-                        </g>
-                    </svg>                 
+                <div class="podium__item">
+                    <p class="podium__city">{{$firstPlace->username?? '1'}}</p>
+                    <div class="podium__rank first">
+                        <svg class="podium__number" viewBox="0 0 27.476 75.03" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="matrix(1, 0, 0, 1, 214.957736, -43.117417)">
+                                <path class="st8"
+                                    d="M -198.928 43.419 C -200.528 47.919 -203.528 51.819 -207.828 55.219 C -210.528 57.319 -213.028 58.819 -215.428 60.019 L -215.428 72.819 C -210.328 70.619 -205.628 67.819 -201.628 64.119 L -201.628 117.219 L -187.528 117.219 L -187.528 43.419 L -198.928 43.419 L -198.928 43.419 Z"
+                                    style="fill: #000;" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="podium__total first">
+                        {{$firstPlace->total?? '0'}}
+                    </div>
                 </div>
-                <div class="podium__total first">
-                  {{$firstPlace->total}}
+                <div class="podium__item">
+                    <p class="podium__city">{{$thirdPlace->username?? '3'}}</p>
+                    <div class="podium__rank third">
+                        3
+                    </div>
+                    <div class="podium__total third">
+                        {{$thirdPlace->total?? '0'}}
+                    </div>
+
+
                 </div>
-            </div>
-            <div class="podium__item">
-                <p class="podium__city">{{$thirdPlace->username}}</p>
-                <div class="podium__rank third">
-                   3
-                </div>
-                <div class="podium__total third">
-                  {{$thirdPlace->total}}
-                </div>
-              
+
 
             </div>
-
-
-
 
         </div>
-</div>
-<br>
-<div class="container mx-auto flex justify-center space-y-5">
+
 
         <div class="py-0 w-full px-5 space-y-5">
             <div class="flex justify-center items-center">
