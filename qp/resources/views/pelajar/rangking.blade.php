@@ -127,11 +127,16 @@
                                 </div>
 
                                 <div class="flex-shrink-0">
-                                    <img class="w-6 h-6 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-                                </div>
+                                    <img class="w-6 h-6 rounded-full" src="{{ $row->avatar }}" alt="{{ $row->username }} image">
+
+                                 </div>
                                 <div class="flex-1 w-full">
                                     <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                         {{ $row->username }}
+                                    </p>
+                                    <p class="text-sm font-medium text-gray-100 truncate dark:text-white">
+                                        {{ $row->email }}
+                                        
                                     </p>
 
 
@@ -139,8 +144,12 @@
                                 <div class="inline-block items-center text-base font-semibold text-gray-900 dark:text-white">
                                     {{ $row->total }}
                                 </div>
+
                                 <div class="justify-betwen">
                                     <img src={{asset($img)}} alt="medal" class="h-6">
+                                </div>
+                                <div class="inline-block items-center text-base font-semibold text-gray-900 dark:text-white">
+                                {{ $row->description }}
                                 </div>
 
                             </div>

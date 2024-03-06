@@ -23,6 +23,7 @@ class SocialiteController extends Controller
             'email' => $request->email,
             'password' =>$request->password,
             'role' => 'pelajar',
+            'avatar'=>$request->avatar,
         ]);
         auth()->login($user);
         Session()->flash('alert-success', 'Data berhasil disimpan');
@@ -49,6 +50,7 @@ class SocialiteController extends Controller
             'email' => $googleUser->email,
             'password' => bcrypt($username), // Isi acak untuk password
             'role' => 'pelajar',
+            'avatar'=> $googleUser->avatar_original,
         ]);
 
         auth()->login($user);

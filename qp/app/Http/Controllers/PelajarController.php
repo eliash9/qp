@@ -128,6 +128,7 @@ class PelajarController extends Controller
     {
         $link = Room::where('id', $id)->firstOrFail();
         $room = Room::findOrFail($id);
+       /*
         $stand = Answer::where([['id_room', $room->id]])
             ->orderBy('total', 'desc')
             ->groupBy('answers.username')
@@ -137,6 +138,18 @@ class PelajarController extends Controller
             ]);
         // dd($stand);
 
+        */
+        $stand = Answer::where([['id_room', $room->id]])
+    ->join('users', 'answers.username', '=', 'users.username')
+    ->orderBy('total', 'desc')
+    ->groupBy('answers.username', 'users.email', 'users.avatar')
+    ->get([
+        'answers.username',
+        'users.email',
+        'users.avatar',
+        Answer::raw('sum(score) as total')
+    ]);
+ 
          // Query for the first position
          $firstPlace = Answer::where([['id_room', $room->id]])
          ->groupBy('answers.username')
@@ -179,14 +192,25 @@ class PelajarController extends Controller
     {
         //  $link = Room::where('id', $id)->firstOrFail();
         //  $room = Room::findOrFail($id);
-        $stand = Answer::groupBy('answers.username')
-            ->orderBy('total', 'desc')
-            //->groupBy('answers.username')
-            ->get([
-                'username',
-                Answer::raw('sum(score) as total')
-            ]);
+        $stand = Answer::join('users', 'answers.username', '=', 'users.username')
+        ->groupBy('answers.username', 'users.email', 'users.avatar')
+        ->orderByDesc(Answer::raw('sum(score)')) // Use orderByDesc for descending order
+        ->select([
+            'answers.username',
+            'users.email',
+            'users.avatar',
+            Answer::raw('sum(score) as total'),
+            Answer::raw("CASE
+                WHEN sum(score) >= 90 THEN 'Sangat Baik'
+                WHEN sum(score) >= 70 THEN 'Baik'
+                WHEN sum(score) >= 50 THEN 'Cukup'
+                ELSE 'Kurang'
+            END as description")
+        ])
+        ->get();
+    
         // dd($stand);
+
 
         // Query for the first position
         $firstPlace = Answer::groupBy('answers.username')

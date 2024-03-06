@@ -5,7 +5,7 @@
 
     <section class="py-10 overflow-hidden">
         <div class="container mx-auto flex justify-center">
-            <div class="w-full py-0 px-5 space-y-5">
+            <div class="max-w-lg py-0 px-5 space-y-5">
                 <div class="flex justify-center items-center pb-5">
                     <div class="w-auto py-1.5 px-2">
                         <h2 class="md:text-2xl text-lg font-sans font-semibold text-center text-black">
@@ -14,8 +14,8 @@
                     </div>
                 </div>                     
                 <!-- New Table -->
-                <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                    <div class="w-full overflow-x-auto bg-color-F4F2DE px-2 py-2">
+                <div class="px-5 p-4 max-w-lg bg-white rounded-lg border shadow-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    <div class="w-full overflow-x-auto  bg-white  px-2 py-2">
                         <table class="w-full whitespace-no-wrap">
                             <thead>
                                 <tr class="text-xs font-semibold tracking-wide text-left text-black uppercase border-b border-gray-400">
