@@ -17,6 +17,7 @@
         align-items: center;
         font-size: 35px;
         color: #fff;
+      
     }
 
     .podium__total {
@@ -26,6 +27,7 @@
         align-items: center;
         font-size: 20px;
         color: #fff;
+        background: rgb(255, 172, 37);
     }
 
     .podium__city {
@@ -40,18 +42,18 @@
 
     .podium .first {
         min-height: 100px;
-        background: rgb(255, 172, 37);
+        
 
     }
 
     .podium .second {
         min-height: 50px;
-        background: blue;
+       
     }
 
     .podium .third {
         min-height: 25px;
-        background: green;
+        
     }
 </style>
 <section class="py-20 overflow-hidden">
@@ -69,7 +71,9 @@
         <div class="pod podium">
             <div class="podium__item">
                 <p class="podium__city">{{$secondPlace->username ?? '2'}}</p>
-                <div class="podium__rank second">2</div>
+                <div class="podium__rank second"> 
+                <img src={{asset('img/set-medals_2.png')}} alt="2" class="w-auto h-auto">
+                </div>
                 <div class="podium__total second">
                     {{$secondPlace->total?? '0'}}
                 </div>
@@ -77,13 +81,7 @@
             <div class="podium__item">
                 <p class="podium__city">{{$firstPlace->username?? '1'}}</p>
                 <div class="podium__rank first">
-                    <svg class="podium__number" viewBox="0 0 27.476 75.03" xmlns="http://www.w3.org/2000/svg">
-                        <g transform="matrix(1, 0, 0, 1, 214.957736, -43.117417)">
-                            <path class="st8"
-                                d="M -198.928 43.419 C -200.528 47.919 -203.528 51.819 -207.828 55.219 C -210.528 57.319 -213.028 58.819 -215.428 60.019 L -215.428 72.819 C -210.328 70.619 -205.628 67.819 -201.628 64.119 L -201.628 117.219 L -187.528 117.219 L -187.528 43.419 L -198.928 43.419 L -198.928 43.419 Z"
-                                style="fill: #000;" />
-                        </g>
-                    </svg>
+                <img src={{asset('img/set-medals_1.png')}} alt="1" class="w-auto h-auto">
                 </div>
                 <div class="podium__total first">
                     {{$firstPlace->total?? '0'}}
@@ -92,7 +90,7 @@
             <div class="podium__item">
                 <p class="podium__city">{{$thirdPlace->username?? '3'}}</p>
                 <div class="podium__rank third">
-                    3
+                <img src={{asset('img/set-medals_3.png')}} alt="3" class="w-auto h-auto">
                 </div>
                 <div class="podium__total third">
                     {{$thirdPlace->total?? '0'}}
@@ -136,11 +134,12 @@
 
                             @php $no=0; @endphp
                             @foreach ($stand as $row)
-                            @php $no++; @endphp
+                           
+                            @php $no++;  $img='img/m-'.$no.'.png' ; @endphp
 
                             <tr class="text-black">
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $no }}
+                                <img src={{asset($img)}} alt="medal" class="h-6">
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $row->username }}
