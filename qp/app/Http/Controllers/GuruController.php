@@ -7,14 +7,15 @@ use App\Models\Room;
 use App\Models\Quiz;
 use App\Models\User;
 use App\Models\Answer;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class GuruController extends Controller
 {
     public function index()
     {
-        $room = Room::all();
+      //  $room = Room::all();
+        $room = Room::with('participants')->get();
         return view('guru.index', ['room' => $room]);
     }
 
@@ -172,7 +173,7 @@ class GuruController extends Controller
             ->groupBy('answers.username')
             ->get([
                 'username',
-                Answer::raw('sum(score) as total')
+                Answer::raw('sum(score) as total,max(duration) as duration')
             ]);
         $quizzes = Quiz::where([['id_room', $room->id]])->get();
         // dd($stand);
@@ -190,7 +191,7 @@ class GuruController extends Controller
            // ->groupBy('answers.username')
             ->get([
                 'username',
-                Answer::raw('sum(score) as total')
+                Answer::raw('sum(score) as total,max(duration) as duration')
             ]);
         $quizzes = Quiz::all();
         // dd($stand);
@@ -204,6 +205,25 @@ class GuruController extends Controller
 
 
         $ubah = Room::where('id', $roomId)->update(['code' => $randomCode]);
+        return redirect('/guru')->with(['success' => 'Data Berhasil Diubah!']);
+
+
+
+    }
+
+    public function start($roomId)
+    {
+       
+      //  $ubah = Room::where('id', $roomId)->update(['is_active' => 1]);
+        $room = Room::findOrFail($roomId);
+
+      
+        $room->update([
+            'is_active' => $room->is_active == 1 ? 0 : 1,
+            'start' => $room->is_active == 0 ? now() : null,
+            'end' => $room->is_active == 1 ? now()->addHour() : null,
+        ]);
+
         return redirect('/guru')->with(['success' => 'Data Berhasil Diubah!']);
 
 

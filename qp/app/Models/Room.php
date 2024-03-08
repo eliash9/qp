@@ -11,7 +11,7 @@ class Room extends Model
 
     protected $table = 'rooms';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'code', 'room', 'is_active'];
+    protected $fillable = ['id', 'code', 'room', 'is_active','start','end'];
     protected $dates = ['created_at, update_at'];
 
     public function answers() {
@@ -20,5 +20,10 @@ class Room extends Model
 
     public function quiz() {
         return $this->hasMany(Quiz::class);
+    }
+
+    public function participants()
+    {
+        return $this->hasMany(QueueParticipant::class, 'room_id');
     }
 }

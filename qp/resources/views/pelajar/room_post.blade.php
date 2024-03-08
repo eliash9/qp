@@ -17,12 +17,12 @@
             <div class="py-2 w-full px-2  rounded-xl">
                 
                 <div class="flex w-full items-center space-x-3">
-                         <h1 class="flex w-full w-auto justify-center text-lg font-sans font-semibold text-center text-black">
+                         <h1 class="flex w-full w-auto justify-center text-lg font-sans font-semibold text-center text-white">
                             {{ $name->room }}
                         </h1>
-                        <h3 class="group relative flex w-full w-auto justify-center   px-3 py-2 text-lg font-sans font-semibold  " id="timer"></h3>
-                        <button class="group relative flex w-full w-auto justify-center " id="toggleButton"><i class="fi fi-rr-expand"></i> </button>
-                        <button class="group relative flex w-full w-auto justify-center " onclick="toggleAudio()"><i class="fi fi-rr-volume"></i></button>
+                        <h3 class="group relative flex w-full w-auto justify-center text-white  px-3 py-2 text-lg font-sans font-semibold  " id="timer"></h3>
+                        <button class="group relative flex w-full w-auto justify-center text-white" id="toggleButton"><i class="fi fi-rr-expand"></i> </button>
+                        <button class="group relative flex w-full w-auto justify-center text-white" onclick="toggleAudio()"><i class="fi fi-rr-volume"></i></button>
                 </div>
               
                     <form class="font-roboto" method="POST" action="{{ url('/pelajar/room/'.$link->id.'/room_post') }}"

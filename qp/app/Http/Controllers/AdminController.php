@@ -38,7 +38,7 @@ class AdminController extends Controller
     private function calculateAnswerPercentage()
     {
         // Menghitung jumlah total baris dengan nilai (score) 1
-        $totalWithScore1 = DB::table('answers')->where('score', 1)->count();
+        $totalWithScore1 = DB::table('answers')->where('desc', 'benar')->count();
 
         // Menghitung total jumlah baris pada tabel answers
         $totalRows = DB::table('answers')->count();

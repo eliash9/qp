@@ -20,14 +20,14 @@ class Quiz extends Model
 
     public function getCorrectAnswerPercentage()
     {
-        $correct = $this->answers()->where('score', 1)->count();
+        $correct = $this->answers()->where('desc', 'benar')->count();
         $total = $this->answers()->count();
         return $total > 0 ? (($correct / $total) * 100) : 0;
     }
 
     public function getWrongAnswerPercentage()
     {
-        $wrong = $this->answers()->where('score', 0)->count();
+        $wrong = $this->answers()->where('desc', 'salah')->count();
         $total = $this->answers()->count();
         return $total > 0 ? (($wrong / $total) * 100) : 0;
     }

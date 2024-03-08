@@ -59,27 +59,22 @@
 
 
 
-<section class="py-20 overflow-hidden">
-
-    <!-- component -->
-    <!-- This is an example component -->
-
-
+<section class="py-10 overflow-hidden">
 
     <div class="py-0 w-full px-5 space-y-5 ">
 
 
-        <div class="flex max-w-lg justify-center items-center">
+        <div class="max-w-lg justify-center items-center">
 
             <div class="px-5 p-4 max-w-lg bg-white rounded-lg border shadow-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-between items-center mb-4 py-3">
                     <h3 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Global Ranking</h3>
-                    <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                    <!--a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                         View all
-                    </a>
+                    </a-->
                 </div>
 
-                <div class="pod podium">
+                <div class="pod podium max-w-sm justify-center items-center">
                     <div class="podium__item">
                         <p class="podium__city">{{$secondPlace->username ?? '2'}}</p>
                         <div class="podium__rank second">
@@ -131,7 +126,7 @@
 
                                  </div>
                                 <div class="flex-1 w-full">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    <p class="text-sm font-semibold text-gray-900 truncate dark:text-white ">
                                         {{ $row->username }}
                                     </p>
                                     <p class="text-sm font-medium text-gray-100 truncate dark:text-white">
@@ -148,7 +143,7 @@
                                 <div class="justify-betwen">
                                     <img src={{asset($img)}} alt="medal" class="h-6">
                                 </div>
-                                <div class="inline-block items-center text-base font-semibold text-gray-900 dark:text-white">
+                                <div class="inline-block items-center text-base font-medium text-gray-900 dark:text-white">
                                 {{ $row->description }}
                                 </div>
 

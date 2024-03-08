@@ -10,9 +10,18 @@ class SocialiteController extends Controller
 {
     public function redirectToGoogle()
     {
+        $domain = request()->getHost();
+
+        if ($domain === 'sivaline.com') {
+            config(['services.google.redirect' => 'https://sivaline.com/login/google/callback']);
+        } elseif ($domain === 'quizplay.id') {
+            config(['services.google.redirect' => 'https://quizplay.id/login/google/callback']);
+        } // Add more conditions for additional domains if needed
+
+        
         return Socialite::driver('google')->redirect();
     }
-
+/*
     public function handleGoogleCallback__()
     {
         $user = Socialite::driver('google')->user();
@@ -23,7 +32,6 @@ class SocialiteController extends Controller
             'email' => $request->email,
             'password' =>$request->password,
             'role' => 'pelajar',
-            'avatar'=>$request->avatar,
         ]);
         auth()->login($user);
         Session()->flash('alert-success', 'Data berhasil disimpan');
@@ -32,7 +40,7 @@ class SocialiteController extends Controller
 
         return redirect('/pelajar');
     }
-
+*/
     public function handleGoogleCallback()
 {
     // Mendapatkan data pengguna dari Google
@@ -50,7 +58,7 @@ class SocialiteController extends Controller
             'email' => $googleUser->email,
             'password' => bcrypt($username), // Isi acak untuk password
             'role' => 'pelajar',
-            'avatar'=> $googleUser->avatar_original,
+            'avatar'=>$googleUser->avatar,
         ]);
 
         auth()->login($user);

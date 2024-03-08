@@ -9,6 +9,7 @@ class AuthController extends Controller
 {
     public function index()
     {
+        
         if (Auth::check()) {
             // User is already logged in, redirect them to a specific route
             $user = Auth::user();
@@ -33,6 +34,9 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
+
+        
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required',

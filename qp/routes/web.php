@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/guru/generateCodeForRoom/{id}', [GuruController::class, 'generateCodeForRoom']);
         Route::get('/guru/room/{id}', [GuruController::class, 'detail_room']);
         Route::get('/guru/room/{id}/standing', [GuruController::class, 'stand'])->name('guru.standing');
-
+        Route::get('/guru/start/{id}', [GuruController::class, 'start']);
         // Route::get('/guru/quiz_add/{id_room}', [GuruController::class, 'add_quiz']);
         // Route::post('/guru/quiz_add/{id_room}', [GuruController::class, 'save_quiz']);
         Route::get('guru/room/{id}/quiz_add', [GuruController::class, 'add_quiz']);

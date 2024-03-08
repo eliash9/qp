@@ -1,32 +1,69 @@
 @extends('layouts.pelajar')
 
 @section('content')
-  
 
-    <section class="py-20 overflow-hidden h-screen">
-        <div class="container mx-auto flex justify-center">
-            <div class="py-0 w-full px-5 space-y-10">        
-                <div class="flex flex-col justify-center items-center space-y-10">
-                    <h2 class="text-center text-xl font-sans font-bold tracking-widest text-black uppercase">
-                        {{ $detail->room }}
-                       
-                    </h2>
-                    @if (session('success'))
-                @endif
-                @if (session('error'))
-                @endif
-                    
-                    <a href="{{ url('/pelajar/room/'.$detail->code.'/room_post') }}" class="px-7 py-2 text-2xl text-white group relative flex w-auto justify-center rounded-lg hover:opacity-50 bg-green-400">
-                        Play
+
+<section class="py-10 overflow-hidden">
+
+    <div class="py-0 w-full px-5 space-y-5 ">
+
+
+        <div class="max-w-lg justify-center items-center">
+
+            <div class="px-5 p-4 w-lg bg-white rounded-lg border shadow-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex justify-between items-center mb-4 py-3">
+                    <h3 class="text-xl font-bold leading-none text-gray-900 dark:text-white"> {{ $detail->room }}</h3>
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                        {{ $detail->id }}
                     </a>
                 </div>
+                <div class="flex justify-between items-center mb-4 py-3">
+                    @if (session('success'))
+                    @endif
+                    @if (session('error'))
+                    @endif
 
-                <div class="flex justify-end items-center">
-                    <a href="{{ url('/pelajar') }}" type="button" class="group relative flex w-auto justify-center rounded-md bg-orange-400 px-3 py-2 text-sm font-semibold text-white hover:bg-gray-400 shadow shadow-gray-400 duration-200">
-                        < <span class="px-2"> | </span> Back
+                    @if ($active)
+                    <a href="{{ url('/pelajar/room/'.$detail->code.'/room_post') }}" class="px-7 py-2 text-2xl text-white group relative flex w-auto justify-center rounded-lg hover:opacity-50 bg-green-400 ">
+                        Play
                     </a>
-                </div>   
-            </div>        
+                    @else
+                    Mohon tunggu
+                    @endif
+                </div>
+
+
+
+
+                <div class="flow-root">
+
+                    <ul role="list" class="py-3 divide-y divide-gray-200 dark:divide-gray-700">
+
+                        @php $n=0; @endphp
+                        @foreach($roomParticipants as $participant)
+                        <li class="py-3 sm:py-4 shadow rounded-md lg:py-4">
+                            <div class="flex items-center space-x-4 px-2 ">
+
+                                <div class="flex-1 w-full">
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                        {{ $participant->name }}
+                                    </p>
+                                </div>
+
+
+                            </div>
+                        </li>
+
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
         </div>
-    </section>
+
+
+
+    </div>
+</section>
+
 @endsection

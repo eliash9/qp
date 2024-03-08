@@ -9,13 +9,42 @@
     <link rel="icon" href="{{ asset ('img/logo.png') }}">
     <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <title>Dashboard Guru | Play Quiz</title>
+    <title>Dashboard Guru | Sivaline</title>
+    <style>
+        /* Style when the radio input is checked */
+        input[type="radio"]:checked+label {
+            background-color: green;
+            /* Change to your desired color */
+            color: white;
+            /* Change to your desired text color */
+            /* Add any other styles you want when checked */
+        }
+
+        input[type="radio"].hidden {
+            display: none;
+        }
+
+        .parallelogram {
+            background-image: url({{asset('img/bg_kotak.svg')}});
+            height: 100%;        
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #381272;
+        }
+
+        .sti {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0px;
+        }
+    </style>
 </head>
 
-<body class="bg-gradient-to-r ">
+<body class="bg-gradient-to-r parallelogram">
 
     <nav id="navbar"
-        class="flex flex-wrap items-center justify-between w-full space-x-4 py-4 px-5 md:px-10 text-lg text-black-1E1E1E bg-blue-2F308B mt-0 z-10 top-0">
+        class="sti flex flex-wrap items-center justify-between w-full space-x-4 py-4 px-5 md:px-10 text-lg text-black-1E1E1E bg-blue-2F308B mt-0 z-10 top-0">
         <svg xmlns="http://www.w3.org/2000/svg" id="menu-button"
             class="h-6 w-6 cursor-pointer md:hidden block text-black-1E1E1E shadow-lg" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
@@ -26,8 +55,7 @@
             <a class="flex items-center no-underline transform duration-200 hover:no-underline hover:opacity-80"
                 href="{{ url('/guru') }}">
                 <span
-                    class="self-center md:text-4xl text-3xl text-blue-1081E8 font-signika font-bold whitespace-nowrap transition-colors duration-300 transform">Quiz
-                    Play</span>
+                    class="self-center md:text-4xl text-3xl text-blue-1081E8 font-signika font-bold whitespace-nowrap transition-colors duration-300 transform">Sivaline</span>
             </a>
             <ul class="pt-4 md:flex md:justify-between md:pt-0 text-base text-black font-semibold">
              @php 
@@ -60,7 +88,7 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container mx-auto py-8 bg-white">
+    <div class="container mx-auto py-8 ">
         @yield('content')
     </div>
   
